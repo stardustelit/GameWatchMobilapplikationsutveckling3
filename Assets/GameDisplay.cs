@@ -76,6 +76,26 @@ public class GameDisplay : MonoBehaviour
                         megaScore++;
                         textScore.text = megaScore.ToString();
                     }
+                    if (x == 9 && pP == 1)
+                        {
+                            megaScore++;
+                            textScore.text = megaScore.ToString();
+                        }
+                    if (x == 14 && pP == 2)
+                    {
+                        megaScore++;
+                        textScore.text = megaScore.ToString();
+                    }
+                    if (x == 19 && pP == 3)
+                    {
+                        megaScore++;
+                        textScore.text = megaScore.ToString();
+                    }
+                    if (x == 24 && pP == 4)
+                    {
+                        megaScore++;
+                        textScore.text = megaScore.ToString();
+                    }
 
                 }
             }  
