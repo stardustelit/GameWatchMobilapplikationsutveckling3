@@ -10,6 +10,8 @@ public class GameBoard : MonoBehaviour
 
     GameObject[] pancakes1;
 
+
+
    
 
     public bool GetValue(int x)

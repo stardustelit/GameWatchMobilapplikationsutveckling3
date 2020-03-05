@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameDisplay : MonoBehaviour
 {
@@ -10,14 +11,27 @@ public class GameDisplay : MonoBehaviour
     
     public GameObject[] pancakes;
 
+    public GameObject[] lifes;
+
+
+
+    public bool[] lifeCounter = new bool[3];
+
+    int lifeTracker = 2;
+
     public Text textScore;
 
-    int megaScore = 0;
+    public static int megaScore = 0;
+
+    public static float loadScore;
+
 
     int pP;
     
-
     int q;
+
+    public int scoreDisplayWhenGameOver; 
+
  
     void setFalse()
     {
@@ -43,10 +57,17 @@ public class GameDisplay : MonoBehaviour
     void Start()
     {
         setFalse();
-     
+
+        // 3 extra lives!
+        for (int m = 0; m < 3; m++)
+        {
+            lifes[m].SetActive(true);
+        }
+        
+
 
         StartCoroutine(RandomFalling());
-
+        megaScore = 0;
 
     }
    
@@ -95,6 +116,20 @@ public class GameDisplay : MonoBehaviour
                     {
                         megaScore++;
                         textScore.text = megaScore.ToString();
+                    }
+                    //If player is really bad at games :P
+                    if (x == 4 && pP != 0 || x == 9 && pP != 1 || x == 14 && pP != 2 || x == 19 && pP != 3 || x == 24 && pP != 4)
+                    {
+
+                        lifes[lifeTracker].SetActive(false);
+                        --lifeTracker;
+
+                        if(lifeTracker == -1)
+                        {
+                            loadScore = megaScore;
+                            SceneManager.LoadScene(1);
+                        }
+                        
                     }
 
                 }

@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     public GameObject[] player;
     int z;
 
+    public int loadANewGame;
+
     public static int whereIsTheWaitress;
 
    
