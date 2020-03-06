@@ -29,15 +29,57 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        
         setFalse();
         z = 0;
     }
     void Update()
     {
 
-            
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-        if (Input.GetKeyUp(KeyCode.A))
+            if (hit.collider != null)
+            {
+               
+                if (hit.collider.name == "right")
+                {
+                    if (z > 4)
+                    {
+                        z = 4;
+                    }
+                    else if (z < 4)
+                    {
+                        z++;
+                        player[(z - 1)].SetActive(false);
+                    }
+
+                    player[z].SetActive(true);
+
+                }
+
+                else if(hit.collider.name == "left")
+                {
+                    if (z < 0)
+                    {
+                        z = 0;
+                    }
+                    else if (z > 0)
+                    {
+                        z--;
+                        player[(z + 1)].SetActive(false);
+                    }
+                    player[z].SetActive(true);
+                }
+
+                whereIsTheWaitress = z;
+
+            }
+        }
+
+                        if (Input.GetKeyUp(KeyCode.A))
         {
             if (z < 0)
             {
